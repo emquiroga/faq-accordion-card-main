@@ -22,10 +22,20 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Kumbh Sans", sans-serif;
+  color: var(--primary-text);
   background-image: linear-gradient(
     var(--gradient-violet),
     var(--gradient-blue)
   );
+}
+
+h1,
+h2 {
+  margin-top: 0;
+}
+
+h2 {
+  margin-bottom: 1rem;
 }
 
 .card {
@@ -33,6 +43,7 @@ body {
   background: white;
   border-radius: 1.5rem;
   margin: 9.375rem 2.5rem auto 2.5rem;
+  padding: 2.875rem 1.5rem;
   min-width: 20.5rem;
   background-image: url("images/bg-pattern-mobile.svg");
   background-repeat: no-repeat;
@@ -55,21 +66,82 @@ body {
   display: flex;
   flex-direction: column;
   text-align: center;
+  height: 8.45rem;
 }
 
 .__mobile {
-  transform: translateY(-55%) translateX(-5%);
+  transform: translateY(-78%) translateX(-5%);
   margin: auto;
   padding: 0;
 }
+.accordion__item {
+  border-bottom: 1px solid var(--divider);
+  padding-top: 1rem;
+}
+.__content {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  margin: 1rem 0;
+}
+.__question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 0.2rem;
+  font-size: 0.85rem;
+  font-family: inherit;
+  text-align: left;
+}
+.__question:focus,
+.__question:focus-visible {
+  outline: dashed 1px var(--divider);
+}
+.__question::after {
+  content: "";
+  display: block;
+  width: 0.625rem;
+  height: 1rem;
+  border: none;
+  background-image: url("images/icon-arrow-down.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  transition: transform 300ms ease-in-out;
+}
+.__question:focus {
+}
+.__question.open {
+  font-weight: 700;
+}
+.__question.open::after {
+  transform: rotate(180deg);
+}
 
-.card__text {
+/* JS CLASSES */
+
+.accordion__collapse.collapse {
+  display: none;
+}
+
+.accordion__collapse.collapsing {
+}
+
+.accordion__collapse.open {
+  display: block;
 }
 
 @media (min-width: 56rem) {
+  body {
+    padding: 2rem;
+  }
+
   .card {
     display: flex;
     margin: 8rem auto;
+    padding: 4.375rem 6rem 4.375rem 0;
     max-width: 57.6875rem;
     background-image: url("images/bg-pattern-desktop.svg");
     background-position: -491% 72%;
@@ -98,8 +170,9 @@ body {
     display: flex;
     align-items: center;
     overflow: hidden;
+    height: 33.6875rem;
   }
   .card__image img {
-    transform: translateX(-5rem);
+    transform: translateX(-5.2rem) translateY(102px);
   }
 }
