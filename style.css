@@ -28,7 +28,10 @@ body {
     var(--gradient-blue)
   );
 }
-
+h1 {
+  text-align: center;
+  color: var(--text-dkblue);
+}
 h1,
 h2 {
   margin-top: 0;
@@ -42,13 +45,12 @@ h2 {
   position: relative;
   background: white;
   border-radius: 1.5rem;
-  margin: 9.375rem 2.5rem auto 2.5rem;
+  margin: 9.375rem 1.5rem auto 1.5rem;
   padding: 2.875rem 1.5rem;
-  min-width: 20.5rem;
+  min-width: 17.5rem;
   background-image: url("images/bg-pattern-mobile.svg");
   background-repeat: no-repeat;
   background-position: top center;
-  background-size: 100;
 }
 
 .__box {
