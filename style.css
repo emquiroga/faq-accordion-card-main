@@ -28,79 +28,99 @@ body {
     var(--gradient-blue)
   );
 }
-h1 {
-  text-align: center;
-  color: var(--text-dkblue);
-}
-h1,
-h2 {
-  margin-top: 0;
-}
-
-h2 {
-  margin-bottom: 1rem;
-}
 /*Card style*/
 .card {
   position: relative;
   background: white;
   border-radius: 1.5rem;
-  margin: 9.375rem 1.5rem 5rem 1.5rem;
+  margin: 9rem 1.5rem 5rem 1.5rem;
   padding: 2.875rem 1.5rem;
   min-width: 17.5rem;
   background-image: url("images/bg-pattern-mobile.svg");
   background-repeat: no-repeat;
   background-position: top center;
+  box-shadow: 1px 1px 8px 8px hsla(245, 100%, 0%, 0.2);
 }
+/*Card style*/
+
+/*Images*/
 .card__image {
   display: flex;
   flex-direction: column;
   text-align: center;
-  height: 8.45rem;
+  height: 5rem;
 }
 
 .__box {
-  display: none;
+  display: none; /*Hiding for mobile*/
 }
 
 .__desktop {
-  width: 100%;
-  height: auto;
-  max-width: 29.5rem;
-  display: none;
+  display: none; /*Hiding for mobile*/
 }
 
 .__mobile {
   transform: translateY(-78%) translateX(-5%);
   margin: auto;
   padding: 0;
+  filter: contrast(75%);
 }
-.accordion__item {
+/*Images*/
+
+/*Text*/
+h1 {
+  text-align: center;
+  font-size: 1.8rem;
+  color: var(--text-dkblue);
+  font-weight: 700;
+  font-family: "Kumbh Sans", sans-serif;
+  margin: 1.5rem 0;
+}
+.__details {
+  margin: auto;
+  width: 100%;
   border-bottom: 1px solid var(--divider);
-  padding-top: 1rem;
+  cursor: pointer;
+  font-weight: 400;
 }
-.__content {
-  font-size: 0.75rem;
-  line-height: 1.4;
-  padding: 1rem 0;
+.__details[open] > .__summary::after {
+  transform: rotate(180deg);
 }
-.__question {
+.__details[open] > .__summary {
+  line-height: 1.5;
+  font-weight: 700;
+  color: var(--primary-text);
+}
+/*Animation for opening*/
+.__details[open] .__summary ~ * {
+  animation: open 400ms ease-in-out;
+}
+@keyframes open {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/*Animation for opening*/
+.__summary {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  border: none;
-  background: transparent;
-  padding: 0.2rem;
-  font-size: 0.85rem;
-  font-family: inherit;
-  text-align: left;
+  padding: 1rem 0;
+  list-style: none;
+  font-family: "Kumbh Sans", sans-serif;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  font-weight: 400;
+  color: var(--text-gyblue);
 }
-.__question:focus,
-.__question:focus-visible {
-  outline: dashed 1px var(--divider);
-}
-.__question::after {
+.__summary::after {
   content: "";
   display: block;
   width: 0.625rem;
@@ -112,30 +132,14 @@ h2 {
   background-position: center center;
   transition: transform 300ms ease-in-out;
 }
-.__question.open {
-  font-weight: 700;
+.__text {
+  color: var(--text-gyblue);
+  margin: 0 1rem 0.75rem 0;
+  font-size: 0.75rem;
+  cursor: default;
+  line-height: 1.5;
 }
-.__question.open::after {
-  transform: rotate(180deg);
-}
-
-/* JS CLASSES */
-.accordion__collapse {
-  transition: height 300ms ease;
-}
-.accordion__collapse.collapse {
-  display: none;
-}
-
-.accordion__collapse.collapsing {
-  height: 0;
-  overflow: hidden;
-}
-
-.accordion__collapse.open {
-  display: block;
-}
-/* JS CLASSES */
+/*Text*/
 
 /*Media queries (desktop)*/
 
@@ -147,38 +151,77 @@ h2 {
   .card {
     display: flex;
     margin: 8rem auto;
-    padding: 4.375rem 6rem 4.375rem 0;
-    max-width: 57.6875rem;
+    padding: 0;
+    max-width: 57.75rem;
     background-image: url("images/bg-pattern-desktop.svg");
-    background-position: -491% 72%;
-    background-size: 90%;
+    background-position: -1050% 72%;
+    background-size: 95%;
   }
-  .__box {
-    display: block;
-    position: absolute;
-    left: 0;
-    top: 58%;
-    transform: translateX(-70%) translateY(-50%);
-    z-index: 1;
-  }
-  .__desktop {
-    display: block;
-  }
-  .__mobile {
-    display: none;
-  }
-
   .card__image,
   .card__text {
     flex: 1;
   }
   .card__image {
     display: flex;
+    padding: 3rem;
     align-items: center;
     overflow: hidden;
     height: 33.6875rem;
   }
-  .card__image img {
-    transform: translateX(-5.2rem) translateY(102px);
+  .__box {
+    display: block;
+    position: absolute;
+    top: 274px;
+    left: -100px;
+    z-index: 1;
+    animation: bounce 5550ms infinite;
+  }
+
+  @keyframes bounce {
+    0% {
+      transform: scale(1, 1) translateY(0);
+    }
+    10% {
+      transform: scale(1.1, 0.9) translateY(0);
+    }
+    30% {
+      transform: scale(0.9, 1.1) translateY(-100px);
+    }
+    50% {
+      transform: scale(1, 1) translateY(0);
+    }
+    57% {
+      transform: scale(1, 1) translateY(-7px);
+    }
+    64% {
+      transform: scale(1, 1) translateY(0);
+    }
+    100% {
+      transform: scale(1, 1) translateY(0);
+    }
+  }
+  .__desktop {
+    display: block;
+    width: 130%;
+    height: auto;
+    transform: translateX(-16%) translateY(20%);
+  }
+  .__mobile {
+    display: none;
+  }
+
+  .card__text {
+    padding: 3rem 6rem 3rem 1rem;
+    width: 80%;
+  }
+  h1 {
+    text-align: left;
+    color: var(--primary-text);
+    margin: 2.5rem 0;
+  }
+  .__summary:hover,
+  .__details[open] > .__summary:hover {
+    color: var(--secondary-text);
+    font-weight: 700;
   }
 }
